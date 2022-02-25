@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Modal, Button } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, FlatList, Modal, Button } from 'react-native';
 
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import defaultStyles from '../config/styles';
 import AppText from './AppText';
+import PickerItem from './PickerItem';
+import colors from '../config/colors';
 
 
-function AppPicker({ name, placeholder }) {
+function AppPicker({ items, iconName, onSelectItem, placeholder, selectedItem }) {
+
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -14,13 +17,25 @@ function AppPicker({ name, placeholder }) {
         <>
             <TouchableWithoutFeedback onPress={() => setIsVisible(true)}>
                 <View style={styles.container}>
-                    {name && <MaterialCommunityIcons name={name} size={25} style={styles.icon} />}
-                    <AppText style={styles.text} title={placeholder} />
+                    {iconName && <MaterialCommunityIcons name={iconName} size={25} style={styles.icon} />}
+                    {selectedItem ? (
+                        <AppText style={styles.text} title={selectedItem.label} />
+                    ) : (
+                        <AppText style={styles.placeholder} title={placeholder} />
+                    )}
                     <MaterialCommunityIcons name="chevron-down" size={25} style={styles.icon} />
                 </View>
             </TouchableWithoutFeedback>
             <Modal animationType='slide' visible={isVisible}>
                 <Button title='Close' onPress={() => setIsVisible(false)} />
+                <FlatList
+                    data={items}
+                    keyExtractor={item => item.value.toString()}
+                    renderItem={({ item }) => <PickerItem label={item.label} onPress={() => {
+                        onSelectItem(item);
+                        setIsVisible(false);
+                    }} />}
+                />
             </Modal>
         </>
     );
@@ -38,6 +53,11 @@ const styles = StyleSheet.create({
     },
     icon: {
         paddingRight: 15,
+    },
+    placeholder: {
+        flexDirection: 'row',
+        flex: 1,
+        color: colors.medium
     },
     text: {
         flexDirection: 'row',

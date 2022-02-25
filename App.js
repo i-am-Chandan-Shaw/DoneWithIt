@@ -1,17 +1,17 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import ListItem from "./app/components/ListItem";
 
-import AppPicker from "./app/components/AppPicker";
-import AppTextInput from "./app/components/AppTextInput";
 import colors from "./app/config/colors";
-
+import ListingEditScreen from "./app/screen/ListingEditScreen";
+import ListingScreen from "./app/screen/ListingScreen";
 
 
 
 export default function App() {
   return <View style={styles.screen}>
-    <AppTextInput name="email" placeholder="User Name" />
-    <AppPicker name="apps" placeholder="Category" />
+    <ListItem image={require("./app/assets/mosh.jpg")} title="Mosh" subTitle="programmer" />
+
   </View>
 
 }

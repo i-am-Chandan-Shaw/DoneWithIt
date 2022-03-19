@@ -74,10 +74,9 @@ function MessageScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    paddingTop: Constants.statusBarHeight,
-
-  },
+  // screen: {
+  //   paddingTop: Constants.statusBarHeight,
+  // },
 });
 
 export default MessageScreen;

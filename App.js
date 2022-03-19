@@ -1,24 +1,26 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import ListItem from "./app/components/ListItem";
 
-import colors from "./app/config/colors";
-import ListingEditScreen from "./app/screen/ListingEditScreen";
-import ListingScreen from "./app/screen/ListingScreen";
+
+import { NavigationContainer } from '@react-navigation/native';
+import AuthNavigator from "./app/Navigation/AuthNAvigation";
+import navigationTheme from "./app/Navigation/navigationTheme";
+import AppNavigator from "./app/Navigation/AppNavigator";
 
 
 
 export default function App() {
   return <View style={styles.screen}>
-    <ListItem image={require("./app/assets/mosh.jpg")} title="Mosh" subTitle="programmer" />
-
-  </View>
-
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator />
+    </NavigationContainer>
+  </View >
 }
+
 const styles = StyleSheet.create({
   screen: {
     paddingTop: 40,
     flex: 1,
-    backgroundColor: colors.white
-  }
+  },
+
 })

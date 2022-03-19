@@ -6,10 +6,7 @@ import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import Card from "../components/Card";
 
-function WelcomeScreen(props) {
-  const pressMe = () => {
-    console.log("Tapped");
-  };
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       blurRadius={8}
@@ -25,8 +22,8 @@ function WelcomeScreen(props) {
       </View>
 
       <View style={styles.buttonContainer}>
-        <AppButton title="Login" onPress={pressMe} />
-        <AppButton title="Register" color="secondary" onPress={pressMe} />
+        <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
+        <AppButton title="Register" color="secondary" onPress={() => navigation.navigate("Register")} />
       </View>
     </ImageBackground>
   );

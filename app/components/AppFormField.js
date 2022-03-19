@@ -5,7 +5,7 @@ import AppErrorMessage from './AppErrorMessage';
 import AppTextInput from './AppTextInput';
 
 
-function AppFormField({ fieldName, ...otherProps }) {
+function AppFormField({ icon, fieldName, ...otherProps }) {
 
     const { setFieldTouched, handleChange, touched, errors } = useFormikContext();
 
@@ -15,6 +15,7 @@ function AppFormField({ fieldName, ...otherProps }) {
                 onBlur={() => setFieldTouched(fieldName)}
                 onChangeText={handleChange(fieldName)}
                 {...otherProps}
+                name={icon}
             />
             <AppErrorMessage error={errors[fieldName]} isVisible={touched[fieldName]} />
         </>

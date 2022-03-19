@@ -20,12 +20,13 @@ const menuItem = [
         icon: {
             name: "email",
             backgroundColor: colors.secondary
-        }
+        },
+        targetSceen: "Messages"
     }
 ]
 
 
-function AccountScreen(props) {
+function AccountScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <ListItem title={"Chandan Shaw"} subTitle={"chandan.shaw2050@gmail.com"}
@@ -37,8 +38,9 @@ function AccountScreen(props) {
                     ItemSeparatorComponent={ListItemSeparator}
                     renderItem={({ item }) =>
                         <ListItem title={item.title}
-                            IconComponent={<Icon name={item.icon.name}
-                                backgroundColor={item.icon.backgroundColor} />} />
+                            IconComponent={<Icon name={item.icon.name} backgroundColor={item.icon.backgroundColor} />}
+                            onPress={() => navigation.navigate(item.targetSceen)}
+                        />
                     }
                 />
             </View>
@@ -49,9 +51,7 @@ function AccountScreen(props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
 
-    },
     middleContainer: {
         marginTop: 50,
         marginBottom: 50

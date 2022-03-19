@@ -8,8 +8,7 @@ import PickerItem from './PickerItem';
 import colors from '../config/colors';
 
 
-function AppPicker({ items, iconName, onSelectItem, placeholder, selectedItem }) {
-
+function AppPicker({ items, iconName, onSelectItem, nosOfColumns = 1, PickerItemComponent = PickerItem, placeholder, selectedItem }) {
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -29,9 +28,10 @@ function AppPicker({ items, iconName, onSelectItem, placeholder, selectedItem })
             <Modal animationType='slide' visible={isVisible}>
                 <Button title='Close' onPress={() => setIsVisible(false)} />
                 <FlatList
+                    numColumns={nosOfColumns}
                     data={items}
                     keyExtractor={item => item.value.toString()}
-                    renderItem={({ item }) => <PickerItem label={item.label} onPress={() => {
+                    renderItem={({ item }) => <PickerItemComponent item={item} onPress={() => {
                         onSelectItem(item);
                         setIsVisible(false);
                     }} />}
